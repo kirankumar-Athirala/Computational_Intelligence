@@ -14,8 +14,11 @@ from tkinter import filedialog
 import pandas as pd
 
 def Process_CSV_Data(data_file):
-    ##todo
-    print("todo")
+    
+    csv_data = pd.read_excel(data_file,header=None)
+    csv_data = csv_data.iloc[: , 6:]
+    print(csv_data)
+
 
 
 
@@ -45,8 +48,8 @@ if __name__ == '__main__':
     process_data_file = None
     
     if (len(sys.argv) == 1):
-        parser = argparse.ArgumentParser(description="data file")
-        parser.add_argument('--input_file', required=False, help="input file containing training data (csv)")
+        parser = argparse.ArgumentParser(description="less script")
+        parser.add_argument('--input_file', required=False, help="input file containing IDs and attributes to change (csv)")
         args = parser.parse_args()
         
         if args.input_file is not None:
@@ -63,7 +66,7 @@ if __name__ == '__main__':
            root.wm_withdraw()
         
            process_data_file = filedialog.askopenfilename(initialdir = "/",
-                                         filetypes = (("xlsx files",
+                                         filetypes = (("CSV files",
                                                        "*.xlsx*"),
                                                       ("all files",
                                                        "*.*")),
